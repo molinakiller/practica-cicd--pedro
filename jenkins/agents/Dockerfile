@@ -12,6 +12,13 @@ RUN apt-get update && \
     echo "jenkins:jenkins" | chpasswd && \
     mkdir /home/jenkins/.m2
 
+#INSTALL TERRAFORM AS AGENT
+RUN wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+RUN apt install -y unzip
+RUN unzip terraform_0.12.24_linux_amd64.zip 
+RUN mv terraform /usr/bin/
+RUN chmod +x /usr/bin/terraform
+
 RUN mkdir /home/jenkins/.ssh/ && \
     touch /home/jenkins/.ssh/authorized_keys
 

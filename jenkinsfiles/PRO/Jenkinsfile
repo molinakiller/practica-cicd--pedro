@@ -1,0 +1,18 @@
+pipeline {
+    agent {
+        label('default')
+    }
+    stages {
+        stage('Build'){
+            steps{
+                dir('terraform') {
+                    timeout(time: 10, unit: 'MINUTES') {
+                        input message: 'Are you sure to deploy?', ok: 'Yes, deploying with terraform'
+                            sh 'terraform apply'
+                    }
+                }
+            }
+        }
+    }
+}
+

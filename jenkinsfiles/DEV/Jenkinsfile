@@ -1,0 +1,15 @@
+pipeline {
+    agent {
+        label('default')
+    }
+    stages {
+        stage('Build') {
+            steps {
+                dir('terraform') {
+                    sh 'terraform apply'
+                }
+            }
+        }
+    }
+}
+
