@@ -1,0 +1,8 @@
+# Ignora archivos del sistema Mac 
+.DS_store
+.gitignore
+./jenkins/jenkins_home
+token-push.txt
+terraform.tfstate
+terraform.tfstate.backup
+application_default_credentials.json
