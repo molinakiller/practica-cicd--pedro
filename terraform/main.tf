@@ -1,6 +1,6 @@
 provider "google" {
   credentials = "application_default_credentials.json"
-  project = "pedro-molina"
+  project = "your-proyect"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
