@@ -7,7 +7,7 @@ pipelineJob('DSL-PRE') {
                         url("https://github.com/molinakiller/practica-cicd-pedro")
                     }
                     branches("main")
-                    scriptPath('/jenkinsfile/DEV/Jenkinsfile')
+                    scriptPath('/jenkinsfiles/DEV/Jenkinsfile')
                 }
             }
         }
