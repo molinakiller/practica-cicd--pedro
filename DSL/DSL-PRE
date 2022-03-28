@@ -1,0 +1,15 @@
+pipelineJob('DSL-PRE') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("https://github.com/molinakiller/practica-cicd-pedro")
+                    }
+                    branches("main")
+                    scriptPath('/jenkinsfile/DEV/Jenkinsfile')
+                }
+            }
+        }
+    }
+}
