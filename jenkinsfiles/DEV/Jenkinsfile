@@ -3,13 +3,20 @@ pipeline {
         label('terraform-agent')
     }
     stages {
-        stage('Build') {
+        stage('Init') {
             steps {
                 dir('terraform') {
-                    sh 'terraform -v'
+                    sh 'terraform init'
                 }
             }
         }
+	stage('Build'){
+	    steps{
+	        dir('terraform'){
+		    sh 'terraform apply --auto-approve'
+		}
+	    }
+	}
     }
 }
 
