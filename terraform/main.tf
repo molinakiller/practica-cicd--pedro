@@ -9,7 +9,7 @@ terraform {
 
 provider "google" {
   credentials = "application_default_credentials.json"
-  project = "project-name"
+  project = "pedro-molina"
   region  = "us-central1"
   zone    = "us-central1-c"
 }
