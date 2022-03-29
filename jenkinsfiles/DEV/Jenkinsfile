@@ -4,12 +4,6 @@ pipeline {
     }
     stages {
 
-        stage('Credentials'){
-            enviroment {
-                CREDS = credentials('google-cloud-credentials')
-            }
-        }
-
         stage('Init') {
             steps {
                 dir('terraform') {
@@ -19,6 +13,10 @@ pipeline {
         }
 
         stage('Build'){
+            enviroment {
+                CREDS = credentials('google-cloud-credentials')
+                sh 'echo $CREDS'
+            }
 	        steps{
 	            dir('terraform'){
 		            sh 'terraform apply --auto-approve'
