@@ -2,6 +2,9 @@ pipeline {
     agent {
         label('terraform-agent')
     }
+    environment { 
+        CC = 'clang'
+    }
     stages {
 
         stage('Init') {
@@ -18,9 +21,10 @@ pipeline {
             }
             steps{    
 	            dir('terraform'){
-                    sh 'echo $CREDS > application_default_credentials.json'
-                    sh 'cat application_default_credentials.json'
-		            sh 'terraform apply --auto-approve'
+                    sh 'printenv' 
+//                    sh 'echo $CREDS > application_default_credentials.json'
+//                    sh 'cat application_default_credentials.json'
+//		            sh 'terraform apply --auto-approve'
 		        }
 	        }
 	    }
