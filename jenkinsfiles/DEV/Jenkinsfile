@@ -18,7 +18,8 @@ pipeline {
             }
             steps{    
 	            dir('terraform'){
-                    sh 'echo $CREDS'
+                    sh 'echo $CREDS > application_default_credentials.json'
+                    sh 'cat application_default_credentials.json'
 		            sh 'terraform apply --auto-approve'
 		        }
 	        }
