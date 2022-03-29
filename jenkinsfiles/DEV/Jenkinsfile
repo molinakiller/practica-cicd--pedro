@@ -3,6 +3,13 @@ pipeline {
         label('terraform-agent')
     }
     stages {
+
+        stage('Credentials'){
+            enviroment {
+                CREDS = credentials('google-cloud-credentials')
+            }
+        }
+
         stage('Init') {
             steps {
                 dir('terraform') {
@@ -10,13 +17,15 @@ pipeline {
                 }
             }
         }
-	stage('Build'){
-	    steps{
-	        dir('terraform'){
-		    sh 'terraform apply --auto-approve'
-		}
+
+        stage('Build'){
+	        steps{
+	            dir('terraform'){
+		            sh 'terraform apply --auto-approve'
+		        }
+	        }
 	    }
-	}
+
     }
 }
 
