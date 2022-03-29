@@ -1,4 +1,4 @@
-pipelineJob('DSL-PRO') {
+pipelineJob('JOB-PRO') {
     definition {
         cpsScm {
             scm {

@@ -1,4 +1,4 @@
-pipelineJob('DSL-PRE') {
+pipelineJob('JOB-PRE') {
     definition {
         cpsScm {
             scm {

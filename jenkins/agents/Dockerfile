@@ -19,6 +19,12 @@ RUN unzip terraform_0.12.24_linux_amd64.zip
 RUN mv terraform /usr/bin/
 RUN chmod +x /usr/bin/terraform
 
+#INSTALL GCLOUD CLI
+RUN apt-get install curl apt-transport-https ca-certificates gnupg -y 
+RUN echo "deb https://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list
+RUN curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
+RUN apt-get update && apt-get install google-cloud-cli -y
+
 RUN mkdir /home/jenkins/.ssh/ && \
     touch /home/jenkins/.ssh/authorized_keys
 

@@ -40,7 +40,7 @@ docker login
 docker build -t <your-docker-hub-username>/terraform-jenkins-agent .
 #upload the docker
 docker push  <your-docker-hub-username>/terraform-jenkins-agent:latest
-```
+```s
 Then you must go to jenkins and configure your agent with this configurations
 Manage Jenkins > Manage Nodes and Clouds > Configure Clouds > Docker agent templates...
 1) Give a label (this will be used by pipeline as agent)
@@ -49,6 +49,49 @@ Manage Jenkins > Manage Nodes and Clouds > Configure Clouds > Docker agent templ
 4) In docker image, put your image (the image you push to docker hub in the last step)
 5) Usage, you must select: "Only build jobs with label expressions matching this node"
 6) Save
+
+## DSL INSTALLATION
+
+### DEV DSL
+You must go to: New item > Give a name for example 0.DSL-DEV > freestyle project > OK  
+Then: On build tab > Select Proccess Job >  Use the providesd DSL script and copy the file of this repo on DSL/DSL-PRE
+```
+pipelineJob('JOB-PRE') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("https://github.com/molinakiller/practica-cicd-pedro")
+                    }
+                    branches("main")
+                    scriptPath('jenkinsfiles/DEV/Jenkinsfile')
+                }
+            }
+        }
+    }
+}
+```
+### PRO DSL
+You must go to: New item > Give a name for example 0.DSL-PRO > freestyle project > OK  
+Then: On build tab > Select Proccess Job >  Use the providesd DSL script and copy the file of this repo on DSL/DSL-PRO
+```
+pipelineJob('JOB-PRO') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("https://github.com/molinakiller/practica-cicd-pedro")
+                    }
+                    branches("main")
+                    scriptPath('jenkinsfiles/PRO/Jenkinsfile')
+                }
+            }
+        }
+    }
+}
+```
 
 ## TERRAFORM EXPLANATION
 
