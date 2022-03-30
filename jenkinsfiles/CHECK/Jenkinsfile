@@ -16,6 +16,8 @@ pipeline {
                     sh 'cp \$CREDS gcloud.json' 
 		            sh 'gcloud auth activate-service-account --key-file gcloud.json'
                     sh 'gcloud -v'
+                    sh 'gsutil du -h gs://acme-storage-dev-12434235 | cut -f1-2 -d " "'
+
 		        }
 	        }
 	    }
