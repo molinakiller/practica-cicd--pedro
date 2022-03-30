@@ -10,8 +10,11 @@ pipeline {
     stages{
         
         stage("One"){
-            //sleep 10
-            sh 'echo hello'
+            
+            steps{
+                sh 'echo hello'
+            }
+            
         }
     }
 }
