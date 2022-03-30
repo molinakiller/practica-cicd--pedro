@@ -1,11 +1,11 @@
 pipeline {
     agent {
         label('terraform-agent')
-        timeout(time: 10, unit: 'SECONDS') {
-            stage("One"){
-                //sleep 10
-                echo 'hello'
-            }
+    }
+    timeout(time: 10, unit: 'SECONDS') {
+        stage("One"){
+            //sleep 10
+            echo 'hello'
         }
     }
 }
