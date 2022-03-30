@@ -1,0 +1,25 @@
+pipeline {
+    agent {
+        label('terraform-agent')
+    }
+    environment { 
+        CC = 'clang'
+    }
+    stages {
+
+        stage('Build'){          
+	        environment {
+                CREDS = credentials('gcloud-credentials')
+            }
+            steps{    
+	            dir('terraform'){
+                    sh 'cp \$CREDS gcloud.json' 
+		            sh 'gcloud auth activate-service-account --key-file gcloud.json'
+                    sh 'gcloud -v'
+		        }
+	        }
+	    }
+
+    }
+}
+

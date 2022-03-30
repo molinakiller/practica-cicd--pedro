@@ -40,7 +40,7 @@ docker login
 docker build -t <your-docker-hub-username>/terraform-jenkins-agent .
 #upload the docker
 docker push  <your-docker-hub-username>/terraform-jenkins-agent:latest
-```s
+```
 Then you must go to jenkins and configure your agent with this configurations
 Manage Jenkins > Manage Nodes and Clouds > Configure Clouds > Docker agent templates...
 1) Give a label (this will be used by pipeline as agent)
