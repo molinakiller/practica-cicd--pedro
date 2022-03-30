@@ -3,8 +3,8 @@ pipeline {
         label('terraform-agent')
     }
     
-    options {
-        timeout(time: 5, unit: 'MINUTES')
+    triggers {
+        cron('H */4 * * *')
     }
 
     stages{
