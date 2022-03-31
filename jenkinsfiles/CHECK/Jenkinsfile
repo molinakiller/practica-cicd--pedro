@@ -7,7 +7,7 @@ pipeline {
     }
     stages {
 
-        stage('Build'){          
+        stage('Init'){          
 	        environment {
                 CREDS = credentials('gcloud-credentials')
             }
@@ -15,13 +15,37 @@ pipeline {
 	            dir('terraform'){
                     sh 'cp \$CREDS gcloud.json' 
 		            sh 'gcloud auth activate-service-account --key-file gcloud.json'
-                    sh 'gcloud -v'
-                    sh 'gsutil du -h gs://acme-storage-dev-12434235 | cut -f1-2 -d " "'
-
+                    sh 'gcloud -v'                    
 		        }
 	        }
 	    }
 
+        stage('Check'){
+            environment {
+                NUMBER =  """${sh(
+                            returnStdout: true,
+                            script: 'gsutil du -h gs://acme-storage-dev-12434235 | cut -f1 -d " "' | tail -n1
+                        )}""" 
+                SIZE =  """${sh(
+                            returnStdout: true,
+                            script: 'gsutil du -h gs://acme-storage-dev-12434235 | cut -f2 -d " "' | tail -n1
+                        )}"""    
+            }
+           
+
+            steps{
+
+                script {
+                    def NUMBER="$NUMBER"
+                    def SIZE="$SIZE"
+                       if (NUMBER.toDouble() >= 20 && SIZE == "KiB") {
+                            echo 'es mayor que DIEZ'
+                        }                     
+                }
+            }
+           
+        
+        }
+
     }
 }
-
