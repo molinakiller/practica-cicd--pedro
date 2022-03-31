@@ -15,7 +15,7 @@ pipeline {
                 CREDS = credentials('gcloud-credentials')
             }
             steps{    
-	            dir('terraform'){
+	            dir('terraform/PRO'){
                     sh 'cp \$CREDS gcloud.json' 
 		            sh 'gcloud auth activate-service-account --key-file gcloud.json'
                     sh 'gcloud -v'                    
@@ -26,11 +26,11 @@ pipeline {
             environment {
                 NUMBER =  """${sh(
                             returnStdout: true,
-                            script: 'gsutil du -ch gs://acme-storage-dev-12434235 | cut -f1 -d " " | tail -n1'
+                            script: 'gsutil du -ch gs://acme-storage-pro-pedro-molina | cut -f1 -d " " | tail -n1'
                         )}""" 
                 SIZE =  """${sh(
                             returnStdout: true,
-                            script: 'gsutil du -ch gs://acme-storage-dev-12434235 | cut -f2 -d " " | tail -n1'
+                            script: 'gsutil du -ch gs://acme-storage-pro-pedro-molina | cut -f2 -d " " | tail -n1'
                         )}"""    
             }
            
@@ -41,7 +41,7 @@ pipeline {
                     def NUMBER="$NUMBER"
                     def SIZE="$SIZE"
                         if (NUMBER.toDouble() >= 10 && SIZE.contains("GiB")) {
-                            sh 'gsutil rm gs://acme-storage-dev-12434235/*'
+                            sh 'gsutil rm gs://acme-storage-pro-pedro-molina/*'
                         }
                         else {
                             echo 'The size its not 20 GB'

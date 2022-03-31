@@ -1,0 +1,15 @@
+pipelineJob('JOB-CHECK') {
+    definition {
+        cpsScm {
+            scm {
+                git {
+                    remote {
+                        url("https://github.com/molinakiller/practica-cicd-pedro")
+                    }
+                    branches("main")
+                    scriptPath('jenkinsfiles/CHECK/PRO/Jenkinsfile')
+                }
+            }
+        }
+    }
+}

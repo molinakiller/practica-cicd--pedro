@@ -7,7 +7,7 @@ pipelineJob('JOB-CHECK') {
                         url("https://github.com/molinakiller/practica-cicd-pedro")
                     }
                     branches("main")
-                    scriptPath('jenkinsfiles/CHECK/Jenkinsfile')
+                    scriptPath('jenkinsfiles/CHECK/DEV/Jenkinsfile')
                 }
             }
         }

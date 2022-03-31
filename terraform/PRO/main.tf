@@ -14,8 +14,8 @@ provider "google" {
   zone    = "us-central1-c"
 }
 
-resource "google_storage_bucket" "acme-storage-development-keepcoding" {
-  name          = "acme-storage-dev-pedro-molina"
+resource "google_storage_bucket" "acme-storage-production-keepcoding" {
+  name          = "acme-storage-pro-pedro-molina"
   location      = "EU"
   force_destroy = true
   uniform_bucket_level_access = true

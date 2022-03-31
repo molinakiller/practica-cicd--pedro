@@ -20,7 +20,7 @@ pipeline {
                 CREDS = credentials('google-cloud-credentials')
             }
             steps{    
-	            dir('terraform'){
+	            dir('terraform/DEV'){
                     sh 'cp \$CREDS application_default_credentials.json' 
 		            sh 'terraform apply --auto-approve'
 		        }

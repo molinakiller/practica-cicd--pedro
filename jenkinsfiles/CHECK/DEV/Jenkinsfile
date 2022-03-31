@@ -1,0 +1,56 @@
+pipeline {
+    agent {
+        label('terraform-agent')
+    }
+    triggers {
+        cron('*/10 * * * *')
+    }    
+    environment { 
+        CC = 'clang'
+    }
+    stages {
+
+        stage('Init'){          
+	        environment {
+                CREDS = credentials('gcloud-credentials')
+            }
+            steps{    
+	            dir('terraform'){
+                    sh 'cp \$CREDS gcloud.json' 
+		            sh 'gcloud auth activate-service-account --key-file gcloud.json'
+                    sh 'gcloud -v'                    
+		        }
+	        }
+	    }
+        stage('Check'){
+            environment {
+                NUMBER =  """${sh(
+                            returnStdout: true,
+                            script: 'gsutil du -ch gs://acme-storage-dev-pedro-molina | cut -f1 -d " " | tail -n1'
+                        )}""" 
+                SIZE =  """${sh(
+                            returnStdout: true,
+                            script: 'gsutil du -ch gs://acme-storage-dev-pedro-molina | cut -f2 -d " " | tail -n1'
+                        )}"""    
+            }
+           
+
+            steps{
+
+                script {
+                    def NUMBER="$NUMBER"
+                    def SIZE="$SIZE"
+                        if (NUMBER.toDouble() >= 10 && SIZE.contains("GiB")) {
+                            sh 'gsutil rm gs://acme-storage-dev-pedro-molina/*'
+                        }
+                        else {
+                            echo 'The size its not 20 GB'
+                        }                    
+
+                }
+            }
+                 
+        }
+
+    }
+}
