@@ -41,7 +41,7 @@ pipeline {
                     def NUMBER="$NUMBER"
                     def SIZE="$SIZE"
                         if (NUMBER.toDouble() >= 10 && SIZE.contains("GiB")) {
-                            echo 'es mayor que DIEZ sss'
+                            sh 'gsutil rm gs://acme-storage-dev-12434235/*'
                         }
                         else {
                             echo 'The size its not 20 GB'
