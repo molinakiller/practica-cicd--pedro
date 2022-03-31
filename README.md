@@ -56,7 +56,7 @@ Manage Jenkins > Manage Nodes and Clouds > Configure Clouds > Docker agent templ
 You must go to: New item > Give a name for example 0.DSL-DEV > freestyle project > OK  
 Then: On build tab > Select Proccess Job >  Use the providesd DSL script and copy the file of this repo on DSL/DSL-PRE
 ```
-pipelineJob('JOB-PRE') {
+pipelineJob('JOB-DEV') {
     definition {
         cpsScm {
             scm {
@@ -71,6 +71,7 @@ pipelineJob('JOB-PRE') {
         }
     }
 }
+
 ```
 ### PRO DSL
 You must go to: New item > Give a name for example 0.DSL-PRO > freestyle project > OK  
@@ -91,6 +92,7 @@ pipelineJob('JOB-PRO') {
         }
     }
 }
+
 ```
 
 ## TERRAFORM EXPLANATION
