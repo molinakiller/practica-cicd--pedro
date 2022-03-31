@@ -2,6 +2,9 @@ pipeline {
     agent {
         label('terraform-agent')
     }
+    triggers {
+        cron('*/10 * * * *')
+    }    
     environment { 
         CC = 'clang'
     }
@@ -37,9 +40,13 @@ pipeline {
                 script {
                     def NUMBER="$NUMBER"
                     def SIZE="$SIZE"
-                       if (NUMBER.toDouble() >= 10 && SIZE == "KiB") {
+                        if (NUMBER.toDouble() >= 10 && SIZE.contains("GiB")) {
                             echo 'es mayor que DIEZ sss'
-                        }                     
+                        }
+                        else {
+                            echo 'The size its not 20 GB'
+                        }                    
+
                 }
             }
                  
