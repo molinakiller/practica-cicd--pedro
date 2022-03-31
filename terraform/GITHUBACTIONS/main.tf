@@ -4,9 +4,9 @@ terraform {
     organization = "pedro-molina"
 #
 #         # The name of the Terraform Cloud workspace to store Terraform state files in.
-#         workspaces {
-#           name = "example-workspace"
-#         }
+    workspaces {
+      name = "pedro-molina"
+    }
        #}
    }
 #
