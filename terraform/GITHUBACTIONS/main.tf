@@ -7,7 +7,7 @@ terraform {
 #         workspaces {
 #           name = "example-workspace"
 #         }
-       }
+       #}
    }
 #
 #     # An example resource that does nothing.
