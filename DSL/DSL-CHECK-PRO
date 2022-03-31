@@ -1,4 +1,4 @@
-pipelineJob('JOB-CHECK') {
+pipelineJob('JOB-CHECK-PRO') {
     definition {
         cpsScm {
             scm {

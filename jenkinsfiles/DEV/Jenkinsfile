@@ -10,7 +10,9 @@ pipeline {
         stage('Init') {
             steps {
                 dir('terraform') {
-                    sh 'terraform init -upgrade'
+                    dir('DEV'){
+                        sh 'terraform init -upgrade'
+                    }
                 }
             }
         }
@@ -20,9 +22,11 @@ pipeline {
                 CREDS = credentials('google-cloud-credentials')
             }
             steps{    
-	            dir('terraform/DEV'){
-                    sh 'cp \$CREDS application_default_credentials.json' 
-		            sh 'terraform apply --auto-approve'
+	            dir('terraform'){
+	                dir('DEV'){
+                        sh 'cp \$CREDS application_default_credentials.json' 
+		                sh 'terraform apply --auto-approve'
+	                } 
 		        }
 	        }
 	    }

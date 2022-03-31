@@ -1,4 +1,4 @@
-pipelineJob('JOB-PRE') {
+pipelineJob('JOB-DEV') {
     definition {
         cpsScm {
             scm {

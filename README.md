@@ -108,6 +108,10 @@ cp route.json application_default_credentials.json
 Then you must add this credentials on Jenkins.
 Go to Manage Jenkins > Manage credentials > Add credentials > On Kind, select Secret file > add your json
 
+## GITHUB ACTIONS
+
+From Repo Settings➞Secrets➞New repository secret, create two secrets.
+
 
 
   

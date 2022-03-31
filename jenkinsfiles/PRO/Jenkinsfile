@@ -2,17 +2,40 @@ pipeline {
     agent {
         label('terraform-agent')
     }
+    environment { 
+        CC = 'clang'
+    }
     stages {
-        stage('Build'){
-            steps{
+
+        stage('Init') {
+            steps {
                 dir('terraform') {
-                    timeout(time: 10, unit: 'MINUTES') {
-                        input message: 'Are you sure to deploy?', ok: 'Yes, deploying with terraform'
-                            sh 'terraform -v'
+                    dir('PRO'){
+                        sh 'terraform init -upgrade'
                     }
                 }
             }
         }
+
+        stage('Build'){          
+	        environment {
+                CREDS = credentials('google-cloud-credentials')
+            }
+            steps{
+                   
+	            dir('terraform'){
+	                dir('PRO'){
+                        timeout(time: 10, unit: 'MINUTES') {
+                        input message: 'Are you sure to deploy?', ok: 'Yes, deploying with terraform'
+                            sh 'terraform -v'
+                        }
+                        sh 'cp \$CREDS application_default_credentials.json' 
+		                sh 'terraform apply --auto-approve'
+	                } 
+		        }
+	        }
+	    }
+
     }
 }
 
