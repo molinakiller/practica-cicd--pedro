@@ -1,19 +1,16 @@
 terraform {
-
+    cloud {
+        organization = "acme-pedro-molina"
+        workspaces {
+            name = "acme-pedro-molina"
+        }
+    }
     required_providers {
-      google = {
-        source  = "hashicorp/google"
-
-      }
+        google = {
+            source  = "hashicorp/google"
+        }
     }
-     cloud {
-      organization = "acme-pedro-molina"
-
-      workspaces {
-        name = "acme-pedro-molina"
-      }
-    }
-  }
+}
 
 provider "google" {
   credentials = "application_default_credentials.json"
