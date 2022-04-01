@@ -16,12 +16,12 @@
          }
        }
      }
-#provider "google" {
+provider "google" {
 #  credentials = "application_default_credentials.json"
-#  project = "pedro.molina"
-#  region  = "us-central1"
-#  zone    = "us-central1-c"
-#}
+  project = "pedro.molina"
+  region  = "us-central1"
+  zone    = "us-central1-c"
+}
 
 resource "google_storage_bucket" "acme-storage-development-keepcoding" {
   name          = "acme-storage-dev-pedro-molina-github-actions"
