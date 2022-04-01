@@ -9,6 +9,13 @@
          }
        }
      }
+
+resource "google_storage_bucket" "acme-storage-development-keepcoding" {
+  name          = "acme-storage-dev-pedro-molina-github-actions"
+  location      = "EU"
+  force_destroy = true
+  uniform_bucket_level_access = true
+}
 #
 #     # An example resource that does nothing.
 #     resource "null_resource" "example" {
