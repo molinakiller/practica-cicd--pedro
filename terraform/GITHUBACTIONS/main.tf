@@ -5,7 +5,8 @@
 
     }
    }
-       backend "remote" {
+    #   backend "remote" {
+     cloud {
 #        # The name of your Terraform Cloud organization.
          organization = "acme-pedro-molina"
 #
