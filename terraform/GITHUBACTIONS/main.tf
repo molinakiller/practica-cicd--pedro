@@ -1,5 +1,5 @@
 terraform {
-  backend "remote" {
+
     required_providers {
       google = {
         source  = "hashicorp/google"
@@ -14,7 +14,7 @@ terraform {
       }
     }
   }
-}
+
 provider "google" {
   credentials = "application_default_credentials.json"
   project = "pedro-molina"
