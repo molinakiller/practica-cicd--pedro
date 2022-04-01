@@ -1,12 +1,12 @@
 terraform {
-  backend "remote" {
-    required_providers {
+  required_providers {
       google = {
         source  = "hashicorp/google"
 
       }
     }
-    cloud {
+  backend "remote" {
+     cloud {
       organization = "acme-pedro-molina"
 
       workspaces {
