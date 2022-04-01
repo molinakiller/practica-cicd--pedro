@@ -1,18 +1,19 @@
 terraform {
-  required_providers {
-    google = {
-      source  = "hashicorp/google"
+  backend "remote" {
+    required_providers {
+      google = {
+        source  = "hashicorp/google"
 
+      }
+    }
+    cloud {
+      organization = "acme-pedro-molina"
+
+      workspaces {
+        name = "acme-pedro-molina"
+      }
     }
   }
-  cloud {
-    organization = "acme-pedro-molina"
-
-    workspaces {
-      name = "acme-pedro-molina"
-    }
-  }
- 
 }
 
 resource "google_storage_bucket" "acme-storage-development-keepcoding" {
@@ -20,4 +21,5 @@ resource "google_storage_bucket" "acme-storage-development-keepcoding" {
   location      = "EU"
   force_destroy = true
   uniform_bucket_level_access = true
+}
 }
