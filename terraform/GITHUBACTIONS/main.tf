@@ -1,4 +1,10 @@
  terraform {
+   required_providers {
+    google = {
+      source  = "hashicorp/google"
+
+    }
+   }
        backend "remote" {
 #        # The name of your Terraform Cloud organization.
          organization = "acme-pedro-molina"
